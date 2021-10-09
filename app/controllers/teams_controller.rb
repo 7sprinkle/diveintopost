@@ -52,8 +52,6 @@ class TeamsController < ApplicationController
     @team = current_user.keep_team_id ? Team.find(current_user.keep_team_id) : current_user.teams.first
   end
 
-  private
-
   def owner_change
     @team = current_user.keep_team
     @team.update(owner_id: params[:owner_id])
@@ -62,6 +60,7 @@ class TeamsController < ApplicationController
     redirect_to @team, notice: I18n.t('views.messages.owner_change')
   end
 
+  private
 
   def set_team
     @team = Team.friendly.find(params[:id])
